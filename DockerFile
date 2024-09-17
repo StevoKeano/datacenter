@@ -1,0 +1,73 @@
+# syntax=docker/dockerfile:1
+
+FROM nvidia/cuda:12.2.0-base-ubuntu22.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/root/miniconda3/bin:${PATH}"
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    wget \
+    bzip2 \
+    ca-certificates \
+    git \
+    curl \
+    build-essential \
+    vim \
+    htop \
+    graphviz \
+    libgraphviz-dev \
+    pkg-config \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+    bash ~/miniconda.sh -b -p $HOME/miniconda3 && \
+    rm ~/miniconda.sh
+
+# Install Node.js
+RUN curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g npm@latest
+
+# Create conda environment
+RUN conda create -n ml python=3.9 -y
+SHELL ["conda", "run", "-n", "ml", "/bin/bash", "-c"]
+
+# Install Python packages
+RUN pip install --upgrade pip && \
+    pip install numpy pandas scikit-learn matplotlib seaborn jupyterlab flask \
+    torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu122 \
+    tensorflow==2.12.0 keras opencv-python-headless \
+    pytest ipython xgboost lightgbm catboost \
+    plotly dash bokeh \
+    nltk gensim spacy \
+    sqlalchemy psycopg2-binary \
+    dask distributed \
+    pytest hypothesis \
+    black flake8 mypy \
+    jupyter-lsp jupyterlab-lsp \
+    python-language-server[all]
+
+# Install additional JupyterLab extensions
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager
+
+# Install Graphviz (for visualization)
+RUN pip install graphviz
+
+# Create directories for volumes
+RUN mkdir -p /workspace /workspace/data /workspace/logs
+
+# Declare volumes for persistent data storage
+VOLUME ["/workspace/data", "/workspace/logs"]
+
+# Set the working directory
+WORKDIR /workspace
+
+# Expose JupyterLab port
+EXPOSE 8888
+
+# Start JupyterLab
+CMD ["conda", "run", "--no-capture-output", "-n", "ml", "jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root"]
+  
