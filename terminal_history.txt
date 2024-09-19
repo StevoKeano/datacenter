@@ -1,0 +1,98 @@
+    1  sudo apt update && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt install update-manager-core -y
+    2  hwe-support-status --verbose
+    3  dpkg -l | grep linux-generic-hwe
+    4  sudo apt install build-essential -y
+    5  sudo add-apt-repository ppa:graphics-drivers/ppa -y
+    6  sudo apt update
+    7  sudo apt search nvidia-driver | grep nvidia-driver | sort -r
+    8  sudo apt install nvidia-driver-560 -y
+    9  bash -c 'sudo apt-get update; sudo apt-get -y upgrade; sudo apt-get install -y libgtk-3-0; sudo apt-get install -y xinit; sudo apt-get install -y xserver-xorg-core;
+   10  bash -c 'sudo apt-get update
+   11  ;
+   12  sudo apt install timeshift
+   13  sudo timeshift-gtk
+   14  nano jjziets_setup.sh
+   15  df -h
+   16  sudo apt-get update
+   17  sudo apt-get -y upgrade
+   18  sudo apt-get install -y libgtk-3-0
+   19  sudo apt-get install -y xinit
+   20  sudo apt-get install -y xserver-xorg-core
+   21  sudo update-grub
+   22  sudo nvidia-xconfig -a --cool-bits=28 --allow-empty-initial-configuration --enable-all-gpus
+   23  ifconfig
+   24  ipconfig
+   25  sudo apt install net-tools
+   26  ip addr show
+   27  hostname
+   28  sudo nc -l -p 40000
+   29  sudo nc -l -p 40019
+   30  #this will enable Persistence mode on reboot so that the gpus can go to idle power when not used 
+   31  sudo bash -c '(crontab -l; echo "@reboot nvidia-smi -pm 1" ) | crontab -' 
+   32  #run the install command for vast
+   33  sudo apt install python3 -y
+   34  crontab -l
+   35  crontab -e
+   36  sudo wget https://console.vast.ai/install -O install
+   37  sudo python3 install 2fa5b7c8ebb62b387b5a51c1c9abe25fb8beeda129f5f24f88b096460a6e0e5e
+   38  sudo bash -c 'echo "40000-40019" > /var/lib/vastai_kaalia/host_port_range'
+   39  cat /var/lib/vastai_kaalia/host_port_range
+   40  sudo reboot 
+   41  nano fixnvmeerror.py
+   42  python3 fixnvmeerror.py
+   43  nano fixnvmeerror.py
+   44  python3 fixnvmeerror.py
+   45  sudo python3 fixnvmeerror.py
+   46  df -h
+   47  sudo ls -l /var/lib/docker
+   48  sudo systemctl status docker
+   49  wget https://raw.githubusercontent.com/vast-ai/vast-python/master/vast.py -O vast
+   50  chmod +x vast
+   51  ./vast set api-key 2fa5b7c8ebb62b387b5a51c1c9abe25fb8beeda129f5f24f88b096460a6e0e5e
+   52  wget https://github.com/jjziets/VastVerification/releases/download/0.4-beta/autoverify_machineid.sh
+   53  chmod +x autoverify_machineid.sh
+   54  apt update
+   55  apt install bc jq
+   56  sudo apt update
+   57  sudo apt install bc jq
+   58  ./autoverify_machineid.sh 28024
+   59  ./autoverify_machineid.sh --ignore-requirements 28024
+   60  ls -all
+   61  ls *.log -all
+   62  nano vast_host_install.log
+   63  crontab -l
+   64  cat Pass_testresults.log
+   65  cat mach_id_list.txt
+   66  ./autoverify_machineid.sh 28024
+   67  set |grep "vast"
+   68  set |grep "key"
+   69  set
+   70  environment
+   71  echo environment
+   72  echo environ
+   73  set
+   74  ./vast set api-key 2fa5b7c8ebb62b387b5a51c1c9abe25fb8beeda129f5f24f88b096460a6e0e5e
+   75  cat ~/.vast_api_key
+   76  cls
+   77  clear
+   78  cat ~/.vast_api_key
+   79  ls -al
+   80  sudo su
+   81  apt remove docker-compose
+   82  curl -L "https://github.com/docker/compose/releases/download/v2.24.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+   83  chmod +x /usr/local/bin/docker-compose
+   84  ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+   85  wget https://raw.githubusercontent.com/jjziets/DCMontoring/main/server/docker-compose.yml
+   86  apt remove docker-compose
+   87  wget https://raw.githubusercontent.com/jjziets/DCMontoring/main/server/docker-compose.yml
+   88  sudo su
+   89  ./autoverify_machineid.sh 28024
+   90  ./autoverify_machineid.sh --ignore-requirements 28024
+   91  sudo ssh-keygen
+   92  sudo cat /root/.ssh/id_rsa.pub
+   93  ssh -p 40004 root@99.107.133.68 -L 8080:localhost:8080
+   94  sudo ssh -p 40004 root@99.107.133.68 -L 8080:localhost:8080
+   95  ./autoverify_machineid.sh 28024
+   96  sudo ./autoverify_machineid.sh 28024
+   97  ./autoverify_machineid.sh 28024
+   98  history > terminal_history.txt
